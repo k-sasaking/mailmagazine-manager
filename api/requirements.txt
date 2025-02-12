@@ -1,2 +1,8 @@
-fastapi
 uvicorn
+fastapi
+python-dotenv
+firebase-admin
+google-api-python-client
+google-auth
+google-generativeai
+vertexai

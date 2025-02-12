@@ -7,10 +7,15 @@ WORKDIR root
 RUN mkdir app
 #main.pyを/root/appに以下にコピー。
 COPY app/main.py app/
+
 #requirements.txtをコンテナ内のroot配下にコピー。
 COPY requirements.txt requirements.txt
+
+COPY google-service-account-key.json google-service-account-key.json
+
 # コンテナ起動時にモジュールをインストール。
 RUN pip install -r requirements.txt
+
 #コンテナ起動時に実行するコマンドを指定。
 ENTRYPOINT ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8080"]
 
