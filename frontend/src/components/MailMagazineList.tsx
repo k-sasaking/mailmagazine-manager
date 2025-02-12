@@ -16,7 +16,7 @@ import { Loader2, Mail } from "lucide-react";
 import { getAuth, signOut } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 import { useEffect, useState } from "react";
-import { headers } from "next/headers";
+import Image from "next/image";
 
 interface MailMagazines {
   id: string;
@@ -46,6 +46,7 @@ export default function MailMagazineList() {
 
   const fetchTest = async () => {
     user?.getIdToken().then(async (token) => {
+      /* eslint-disable @typescript-eslint/no-unused-vars */
       const res = await fetch("http://localhost:8080/", {
         headers: {
           "Content-Type": "application/json",
@@ -72,6 +73,7 @@ export default function MailMagazineList() {
         const result = await res.json();
         console.log(result);
         const mails = result
+          /* eslint-disable @typescript-eslint/no-explicit-any */
           .map((res: any) => {
             return {
               id: res.id ?? "",
@@ -86,6 +88,7 @@ export default function MailMagazineList() {
               frequency: res.frequency ?? "",
             };
           })
+          /* eslint-disable @typescript-eslint/no-explicit-any */
           .sort((a: any, b: any) => (a.unreadCount < b.unreadCount ? 1 : -1));
         setMailMagazines(mails);
       } catch (e) {
@@ -168,7 +171,7 @@ export default function MailMagazineList() {
               あなたのメール、たまっていませんか？
             </p>
             <div className="text-center">
-              <img
+              <Image
                 src="/mail.jpeg"
                 alt="mail"
                 className="mx-auto my-5"
