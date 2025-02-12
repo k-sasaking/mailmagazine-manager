@@ -47,7 +47,7 @@ export default function MailMagazineList() {
   const fetchTest = async () => {
     user?.getIdToken().then(async (token) => {
       /* eslint-disable @typescript-eslint/no-unused-vars */
-      const res = await fetch("http://localhost:8080/", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -62,14 +62,17 @@ export default function MailMagazineList() {
       const accessToken = localStorage.getItem("accessToken");
       try {
         console.log("###");
-        const res = await fetch("http://localhost:8080/analyze-emails", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ access_token: accessToken }),
-        });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_HOST}/analyze-emails`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ access_token: accessToken }),
+          }
+        );
         const result = await res.json();
         console.log(result);
         const mails = result
