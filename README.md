@@ -1,5 +1,9 @@
 # mailmagazine-manager
 
+## 本番URL
+
+https://mailmagazine-manager.vercel.app/
+
 ### ローカル環境構築手順
 
 #### frontend
